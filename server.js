@@ -2,6 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const dns = require('node:dns');
+
+dns.setServers(['1.1.1.1', '8.8.8.8']);
+
 require('dotenv').config();
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -27,6 +31,7 @@ mongoose.connect(MONGODB_URL)
     console.log("Database connected successfully");
 })
 .catch((err) => {
+    console.log(err);
     console.log("Error while connected to database");
 });
 
